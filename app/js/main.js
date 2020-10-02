@@ -12,13 +12,13 @@ Highcharts.setOptions({
     }
 });
 
-let chartId = document.getElementById("chart-container");
+let chartIdSeptJobs = document.getElementById("chart-container-sept-jobs");
 
 // checks for the chart ID and displays a backup image if the browser can't find it
 setTimeout(function() {
-    if(chartId.innerHTML === "") {
+    if(chartIdSeptJobs.innerHTML === "") {
         // console.log('noId');
-        let chartArea = document.getElementsByClassName("chart-area");
+        let chartArea = document.getElementsByClassName("chart-area-sept-jobs");
         for(var i = 0; i < chartArea.length; i++) {
             chartArea[i].style.display = "none";
         } 
@@ -30,9 +30,9 @@ setTimeout(function() {
 },500);
 
 function drawHighcharts() {
-    Highcharts.chart(chartId, {
+    Highcharts.chart(chartIdSeptJobs, {
         chart: {
-            type: 'bar',
+            type: 'column',
             styledMode: true,
             spacingBottom: 25,
             spacingRight: 100,
@@ -43,7 +43,7 @@ function drawHighcharts() {
             text: null
         },
         data: {
-            googleSpreadsheetKey: '1YOKb5l2VM4aAB2r20N_1aT_1vEajYrP3U-U3A6lZbC0'
+            googleSpreadsheetKey: '1r5SdkE-cFhYYmTekngzvwuDYWIdL-c_g9uk74cDMQhI'
         },
         // for bar charts only
         plotOptions: {
@@ -69,11 +69,7 @@ function drawHighcharts() {
         //     }
         // },
         legend: {
-            align: 'right',
-            symbolRadius: 0,
-            verticalAlign: 'top',
-            x: 10,
-            itemMarginTop: -10
+            enabled: false
         },
         xAxis: {
             labels: {
@@ -94,6 +90,9 @@ function drawHighcharts() {
                 useHTML: true,
                 overflow: 'allow'
             },
+            min: -25000000,
+            max: 10000000,
+            tickAmount: 8
             // adds commas to thousands
             // formatter: function () {
             //     return Highcharts.numberFormat(this.value,0,'.',',');
@@ -106,6 +105,21 @@ function drawHighcharts() {
             shadow: false,
             padding: 10
         },
+        annotations: [{
+            labels: [{
+                point: {
+                    xAxis: 0,
+                    yAxis: 0,
+                    x: 1598973344000,
+                    y: 661000
+                },
+                text: '+661,000',
+                align: 'center',
+                y: -10,
+                x: 0,
+                padding: 0
+            }]
+        }],
         responsive: {
             rules: [{
             condition: {
